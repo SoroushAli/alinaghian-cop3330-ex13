@@ -42,6 +42,36 @@ public class App {
     static Scanner in = new Scanner(System.in);
 
     public static void main(String[] args) {
+        int prinAmount = readPrincipalAmount();
+        float rate = readRate();
+        int years = readYears();
+        int compoundedInterest = readCompoundedInterest();
+        endOfInvestment(prinAmount, rate, years, compoundedInterest);
+    }
 
+    private static void endOfInvestment(int prin, float rate, int years, int compound) {
+        float newRate = rate/100;
+        float endAmount = (float) (prin * Math.pow(1 + newRate/compound, compound * years));
+        System.out.print(String.format("$%d invested at %.1f%% for %d years compounded %d times per year is $%.2f.", prin, rate, years, compound, endAmount));
+    }
+
+    private static int readCompoundedInterest() {
+        System.out.print("What is the number of times the interest is compounded per year? ");
+        return in.nextInt();
+    }
+
+    private static int readYears() {
+        System.out.print("What is the number of years? ");
+        return in.nextInt();
+    }
+
+    private static float readRate() {
+        System.out.print("What is the rate? ");
+        return in.nextFloat();
+    }
+
+    private static int readPrincipalAmount() {
+        System.out.print("What is the principal amount? ");
+        return in.nextInt();
     }
 }
